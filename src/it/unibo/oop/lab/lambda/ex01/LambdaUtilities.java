@@ -104,13 +104,15 @@ public final class LambdaUtilities {
      * @return a map whose non present values are filled with the value provided
      *         by the supplier
      */
-    public static <K, V> Map<K, V> fill(final Map<K, Optional<V>> map, final Supplier<V> def) {
+	@SuppressWarnings("unchecked")
+	public static <K, V> Map<K, V> fill(final Map<K, Optional<V>> map, final Supplier<V> def) {
         /*
          * Suggestion: consider Optional.orElse
          * 
          * Keep in mind that a map can be iterated through its forEach method
          */
-        return null;
+    	map.forEach((l1, l2) -> l2.orElse(def.get()));
+        return (Map<K, V>) map;
     }
 
     /**
