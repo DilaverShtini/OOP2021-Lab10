@@ -29,9 +29,14 @@ public final class MusicGroupImpl implements MusicGroup {
         this.songs.add(new MusicGroupImpl.Song(songName, albumName, duration));
     }
 
+    /**
+     * @return all the songs for this group ordered by their name
+     */
     @Override
     public Stream<String> orderedSongNames() {
-        return null;
+    	return this.songs.stream()
+    				.map(s -> s.songName)
+    				.sorted();
     }
 
     @Override
