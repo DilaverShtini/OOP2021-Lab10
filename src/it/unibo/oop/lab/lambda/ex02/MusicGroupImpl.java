@@ -39,9 +39,12 @@ public final class MusicGroupImpl implements MusicGroup {
     				.sorted();
     }
 
+    /**
+     * @return all the album of this group
+     */
     @Override
     public Stream<String> albumNames() {
-        return null;
+        return this.albums.keySet().stream();
     }
 
     @Override
