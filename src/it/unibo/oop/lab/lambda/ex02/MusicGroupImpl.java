@@ -15,6 +15,11 @@ public final class MusicGroupImpl implements MusicGroup {
 
     private final Map<String, Integer> albums = new HashMap<>();
     private final Set<Song> songs = new HashSet<>();
+    /*
+     * variable used in countSongs to take the number of songs
+     */
+    private int x = 0;
+
 
     @Override
     public void addAlbum(final String albumName, final int year) {
@@ -47,14 +52,29 @@ public final class MusicGroupImpl implements MusicGroup {
         return this.albums.keySet().stream();
     }
 
+    /**
+     * @param year
+     * 			the year
+     * @return the albums in this specific year
+     */
     @Override
     public Stream<String> albumInYear(final int year) {
         return null;
     }
 
+    /**
+     * @param albumName
+     * 				name of the album
+     * @return the number of songs in this album
+     */
     @Override
     public int countSongs(final String albumName) {
-        return -1;
+        this.x = (int) songs.stream()
+        				.filter(l -> l.getAlbumName().isPresent())	
+        				.filter(l -> l.getAlbumName().get().equals(albumName))
+        				.distinct()
+        				.count();
+        return this.x;
     }
 
     @Override
