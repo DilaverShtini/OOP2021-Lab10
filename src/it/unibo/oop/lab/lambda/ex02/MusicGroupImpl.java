@@ -83,9 +83,18 @@ public final class MusicGroupImpl implements MusicGroup {
         			.count();
     }
 
+    /**
+     * @param albumName 
+     * 			the name of the album
+     * @return average track length for the album
+     */
     @Override
     public OptionalDouble averageDurationOfSongs(final String albumName) {
-        return null;
+    	return songs.stream()
+    				.filter(l -> l.getAlbumName().isPresent())
+    				.filter(l -> l.getAlbumName().get().equals(albumName))
+    				.mapToDouble(l -> l.getDuration())
+    				.average();
     }
 
     @Override
