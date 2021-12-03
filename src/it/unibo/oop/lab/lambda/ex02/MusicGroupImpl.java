@@ -54,7 +54,9 @@ public final class MusicGroupImpl implements MusicGroup {
      */
     @Override
     public Stream<String> albumInYear(final int year) {
-        return null;
+        return albums.entrySet().stream()
+        						.filter(y -> y.getValue() == year)
+        						.map(y -> y.getKey());
     }
 
     /**
@@ -93,7 +95,7 @@ public final class MusicGroupImpl implements MusicGroup {
 
     @Override
     public Optional<String> longestAlbum() {
-        return null;
+    	return null;
     }
 
     private static final class Song {
