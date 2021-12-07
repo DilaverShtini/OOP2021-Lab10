@@ -97,12 +97,17 @@ public final class MusicGroupImpl implements MusicGroup {
     				.average();
     }
 
+    /**
+     * @return the longest song
+     */
     @Override
     public Optional<String> longestSong() {
-        return null;
+    	return songs.stream()
+    				.max((x, y) -> Double.compare(x.getDuration(), y.getDuration()))
+    				.map(s -> s.songName);
     }
 
-    @Override
+	@Override
     public Optional<String> longestAlbum() {
     	return null;
     }
