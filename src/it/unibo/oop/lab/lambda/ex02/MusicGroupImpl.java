@@ -107,9 +107,14 @@ public final class MusicGroupImpl implements MusicGroup {
     				.map(s -> s.songName);
     }
 
+    /**
+     * @return the longest album
+     */
 	@Override
     public Optional<String> longestAlbum() {
-    	return null;
+    	return songs.stream()
+				.max((x, y) -> Double.compare(x.getDuration(), y.getDuration()))
+				.map(a -> a.albumName.get());
     }
 
     private static final class Song {
